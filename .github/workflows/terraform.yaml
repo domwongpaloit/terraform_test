@@ -20,7 +20,7 @@ env:
  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
  # S3 bucket for the Terraform state
  BUCKET_TF_STATE: ${{ secrets.BUCKET_TF_STATE }}
- BUCKET_KEY: ${{ github.base_ref }}
+ BUCKET_KEY: main
  BUCKET_REGION: ${{ secrets.BUCKET_REGION }}
  
 jobs:
