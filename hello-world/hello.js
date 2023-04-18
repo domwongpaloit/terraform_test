@@ -7,9 +7,9 @@
 
 module.exports.handler = async (event) => {
   console.log('Event: ', event);
-  let responseMessage = 'V2Hello, World!';
+  let responseMessage = 'V3Hello, World!';
   if (event.queryStringParameters && event.queryStringParameters['Name']) {
-    responseMessage = 'V2Hello, ' + event.queryStringParameters['Name'] + '!';
+    responseMessage = 'V3Hello, ' + event.queryStringParameters['Name'] + '!';
   }
   return {
     statusCode: 200,
