@@ -3,57 +3,11 @@
 
 provider "aws" {
   region = var.aws_region
-
-  default_tags {
-    tags = {
-      hashicorp-learn = "lambda-api-gateway"
-    }
-  }
-
 }
 
-# resource "aws_vpc" "example" {
-#   cidr_block           = "10.0.0.0/16"
-#   enable_dns_hostnames = true
-#   enable_dns_support   = true
-
-#   tags = {
-#     Name = "example-vpc"
-#   }
-# }
-
-# resource "aws_subnet" "example" {
-#   cidr_block        = "10.0.1.0/24"
-#   vpc_id            = aws_vpc.example.id
-#   availability_zone = var.aws_subnet
-
-#   tags = {
-#     Name = "example-subnet"
-#   }
-# }
-
-# resource "aws_security_group" "example" {
-#   name_prefix = "example-sg"
-#   vpc_id      = aws_vpc.example.id
-
-#   ingress {
-#     from_port   = 0
-#     to_port     = 65535
-#     protocol    = "tcp"
-#     cidr_blocks = ["10.0.1.0/24"]
-#   }
-
-#   egress {
-#     from_port   = 0
-#     to_port     = 65535
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-# }
-
 resource "random_pet" "lambda_bucket_name" {
-  prefix = "learn-terraform-functions"
-  length = 4
+  prefix = "terraform-lambda-test"
+  length = 2
 }
 
 resource "aws_s3_bucket" "lambda_bucket" {
