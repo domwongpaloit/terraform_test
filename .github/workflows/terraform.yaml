@@ -28,7 +28,7 @@ jobs:
    defaults:
      run:
        shell: bash
-       working-directory: /
+       working-directory: ./
  
    steps:
      - name: Checkout the repository to the runner
