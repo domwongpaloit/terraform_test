@@ -43,7 +43,7 @@ jobs:
     
      - name: Terraform init
        id: init
-       run: terraform init -backend-config="bucket=$BUCKET_TF_STATE" -backend-config="key=$BUCKET_KEY"
+       run: terraform init -backend-config="bucket=$BUCKET_TF_STATE" -backend-config="key=$BUCKET_KEY" -backend-config="region=$BUCKET_REGION"
  
      - name: Terraform format
        id: fmt
