@@ -41,8 +41,9 @@ jobs:
      - name: Run Jest tests
        run: pnpm test
        working-directory: ./backend
-       
+
  terraform:
+   needs: test_backend
    name: "Terraform Infrastructure Change Management"
    runs-on: ubuntu-latest
    defaults:
