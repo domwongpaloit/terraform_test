@@ -97,4 +97,4 @@ jobs:
  
      - name: Terraform Apply
        if: github.event_name == 'push'
-       run: terraform apply -var-file="/infra/${{steps.extract_branch.outputs.branch}}.tfvars" -auto-approve -input=false
+       run: terraform apply -var="stage=${{steps.extract_branch.outputs.branch}}" -auto-approve -input=false
