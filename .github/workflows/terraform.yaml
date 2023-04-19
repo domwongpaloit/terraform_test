@@ -69,7 +69,6 @@ jobs:
        working-directory: ./infra
     
      - uses: actions/github-script@v6
-       working-directory: ./infra
        if: github.event_name == 'pull_request'
        env:
          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
