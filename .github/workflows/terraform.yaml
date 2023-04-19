@@ -35,12 +35,12 @@ jobs:
          npm install -g pnpm
          pnpm install
        working-directory: ./backend 
-     - name: Run Jest coverage
-       run: pnpm coverage
-       working-directory: ./backend 
      - name: Run Jest tests
        run: pnpm test
        working-directory: ./backend
+     - name: Run Jest coverage
+       run: pnpm coverage
+       working-directory: ./backend 
 
  terraform:
    needs: test_backend
