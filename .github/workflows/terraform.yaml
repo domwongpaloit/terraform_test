@@ -4,6 +4,7 @@ on:
  push:
    branches:
    - main
+   - develop
   #  paths:
   #  - terraform/**
  pull_request:
@@ -29,7 +30,7 @@ jobs:
    defaults:
      run:
        shell: bash
-       working-directory: ./
+       working-directory: ./infra
  
    steps:
      - name: Extract branch name
@@ -59,7 +60,7 @@ jobs:
  
      - name: Terraform plan
        id: plan
-      #  if: github.event_name == 'pull_request'
+       if: github.event_name == 'pull_request'
        run: terraform plan -no-color -input=false
        continue-on-error: true
     
@@ -95,5 +96,5 @@ jobs:
        run: exit 1
  
      - name: Terraform Apply
-       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-       run: terraform apply -auto-approve -input=false
+       if: github.event_name == 'push'
+       run: terraform apply -var-file="${{steps.extract_branch.outputs.branch}}.tfvars" -auto-approve -input=false
