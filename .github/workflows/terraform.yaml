@@ -25,26 +25,23 @@ env:
  BUCKET_REGION: ${{ secrets.BUCKET_REGION }}
  
 jobs:
-  test_backend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: |
-          npm install -g pnpm
-          pnpm install
-        working-directory: ./backend
-
-      - name: Run Jest coverage
-        run: pnpm coverage
-        working-directory: ./backend
-
-      - name: Run Jest tests
-        run: pnpm test
-        working-directory: ./backend
-        
+ test_backend:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout code
+       uses: actions/checkout@v3 
+     - name: Install dependencies
+       run: |
+         npm install -g pnpm
+         pnpm install
+       working-directory: ./backend 
+     - name: Run Jest coverage
+       run: pnpm coverage
+       working-directory: ./backend 
+     - name: Run Jest tests
+       run: pnpm test
+       working-directory: ./backend
+       
  terraform:
    name: "Terraform Infrastructure Change Management"
    runs-on: ubuntu-latest
