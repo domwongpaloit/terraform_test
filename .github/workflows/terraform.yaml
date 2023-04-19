@@ -54,18 +54,22 @@ jobs:
      - name: Terraform format
        id: fmt
        run: terraform fmt -check
+       working-directory: ./infra
     
      - name: Terraform validate
        id: validate
        run: terraform validate
+       working-directory: ./infra
  
      - name: Terraform plan
        id: plan
        if: github.event_name == 'pull_request'
        run: terraform plan -no-color -input=false
        continue-on-error: true
+       working-directory: ./infra
     
      - uses: actions/github-script@v6
+       working-directory: ./infra
        if: github.event_name == 'pull_request'
        env:
          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
@@ -97,5 +101,6 @@ jobs:
        run: exit 1
  
      - name: Terraform Apply
+       working-directory: ./infra
        if: github.event_name == 'push'
        run: terraform apply -var="stage=${{steps.extract_branch.outputs.branch}}" -auto-approve -input=false
