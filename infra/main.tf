@@ -45,7 +45,7 @@ resource "aws_s3_object" "lambda_functions" {
 }
 
 resource "aws_lambda_function" "hello_world" {
-  function_name = "Hello ${var.stage}"
+  function_name = "Hello_${var.stage}"
 
   s3_bucket = aws_s3_bucket.lambda_bucket.id
   s3_key    = aws_s3_object.lambda_functions.key
