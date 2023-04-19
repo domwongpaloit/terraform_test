@@ -1,4 +1,4 @@
-const { handler } = require("../hello");
+const { handler } = require("../src/hello");
 
 describe('handler', () => {
     it('returns a response with "Hello, World!" when called without any parameters', async () => {

@@ -31,7 +31,7 @@ resource "aws_s3_bucket_acl" "bucket_acl" {
 
 data "archive_file" "lambda_functions" {
   type        = "zip"
-  source_dir  = "../backend"
+  source_dir  = "../backend/src"
   output_path = "../backend.zip"
 }
 
