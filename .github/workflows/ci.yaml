@@ -1,0 +1,36 @@
+name: "CI and testing"
+ 
+on:
+ push:
+   branches:
+   - main
+   - develop
+  #  paths:
+  #  - backend/**
+ pull_request:
+   branches:
+   - main
+   - develop
+  #  paths:
+  #  - backend/**
+
+jobs:
+  test_backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          npm install -g pnpm
+          pnpm install
+        working-directory: ./backend
+
+      - name: Run Jest coverage
+        run: pnpm coverage
+        working-directory: ./backend
+        
+      - name: Run Jest tests
+        run: pnpm test
+        working-directory: ./backend
