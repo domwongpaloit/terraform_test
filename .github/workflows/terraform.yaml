@@ -1,17 +1,28 @@
 name: "Terraform GA"
- 
+
+
 on:
- push:
-   branches:
-   - main
-   - develop
-  #  paths:
-  #  - terraform/**
- pull_request:
-   branches:
-   - main
-  #  paths:
-  #  - terraform/**
+  workflow_run:
+    workflows: ["CI and testing"]
+    branches:
+      - main
+      - develop
+    types:
+      - completed
+
+# on:
+#  push:
+#    branches:
+#    - main
+#    - develop
+#   #  paths:
+#   #  - infra/**
+#  pull_request:
+#    branches:
+#    - main
+#    - develop
+#   #  paths:
+#   #  - infra/**
  
 env:
  # verbosity setting for Terraform logs

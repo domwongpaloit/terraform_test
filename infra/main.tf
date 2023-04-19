@@ -87,7 +87,7 @@ resource "aws_iam_role_policy_attachment" "lambda_policy" {
 }
 
 resource "aws_apigatewayv2_api" "lambda" {
-  name          = "lambda_function_gateay"
+  name          = "lambda_function_${var.stage}"
   protocol_type = "HTTP"
 }
 
