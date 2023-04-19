@@ -1,28 +1,18 @@
-name: "Terraform GA"
-
+name: "CI & CD"
 
 on:
-  workflow_run:
-    workflows: ["CI and testing"]
-    branches:
-      - main
-      - develop
-    types:
-      - completed
-
-# on:
-#  push:
-#    branches:
-#    - main
-#    - develop
-#   #  paths:
-#   #  - infra/**
-#  pull_request:
-#    branches:
-#    - main
-#    - develop
-#   #  paths:
-#   #  - infra/**
+ push:
+   branches:
+   - main
+   - develop
+  #  paths:
+  #  - infra/**
+ pull_request:
+   branches:
+   - main
+   - develop
+  #  paths:
+  #  - infra/**
  
 env:
  # verbosity setting for Terraform logs
@@ -35,7 +25,25 @@ env:
  BUCKET_REGION: ${{ secrets.BUCKET_REGION }}
  
 jobs:
+ test_backend:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout code
+       uses: actions/checkout@v3 
+     - name: Install dependencies
+       run: |
+         npm install -g pnpm
+         pnpm install
+       working-directory: ./backend 
+     - name: Run Jest coverage
+       run: pnpm coverage
+       working-directory: ./backend 
+     - name: Run Jest tests
+       run: pnpm test
+       working-directory: ./backend
+
  terraform:
+   needs: test_backend
    name: "Terraform Infrastructure Change Management"
    runs-on: ubuntu-latest
    defaults:
@@ -50,7 +58,7 @@ jobs:
        id: extract_branch
 
      - name: Checkout the repository to the runner
-       uses: actions/checkout@v2
+       uses: actions/checkout@v3
  
      - name: Setup Terraform with specified version on the runner
        uses: hashicorp/setup-terraform@v2
