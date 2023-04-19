@@ -47,7 +47,7 @@ jobs:
          terraform_version: 1.4.5
      
      - name: move to infra dir
-       run: cd infra
+       run: echo ls && cd infra
 
      - name: Terraform init
        id: init
