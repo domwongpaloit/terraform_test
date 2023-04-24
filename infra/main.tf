@@ -29,23 +29,6 @@ resource "aws_s3_bucket_acl" "bucket_acl" {
   acl    = "private"
 }
 
-resource "aws_iam_role" "lambda_exec" {
-  name = "serverless_lambda_${var.stage}"
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [{
-      Action = "sts:AssumeRole"
-      Effect = "Allow"
-      Sid    = ""
-      Principal = {
-        Service = "lambda.amazonaws.com"
-      }
-      }
-    ]
-  })
-}
-
 # Define the API Gateway REST API
 module "api_gateway" {
   source = "terraform-aws-modules/apigateway-v2/aws"
