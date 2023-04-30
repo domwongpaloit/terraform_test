@@ -27,9 +27,9 @@ module "lambda_functions" {
   store_on_s3   = true
   s3_bucket     = aws_s3_bucket.lambda_bucket.id
 
-  layers = [
-    module.lambda_layer_s3.lambda_layer_arn,
-  ]
+  # layers = [
+  #   module.lambda_layer_s3.lambda_layer_arn,
+  # ]
 
   allowed_triggers = {
     AllowExecutionFromAPIGateway = {
