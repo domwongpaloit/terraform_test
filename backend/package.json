@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "build": "rm -rf node_modules && NODE_ENV=production && npm install --production && mkdir -p layer/nodejs && cp -r node_modules layer/nodejs/ && cp package.json nodejs/ && cp package-lock.json layer/nodejs/"
+    "build": "rm -rf node_modules && NODE_ENV=production && npm install --production && mkdir -p layer/nodejs && cp -r node_modules layer/nodejs/ && cp package.json layer/nodejs/ && cp package-lock.json layer/nodejs/"
   },
   "keywords": [],
   "author": "",
