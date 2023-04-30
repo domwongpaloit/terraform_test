@@ -43,17 +43,7 @@ jobs:
      - name: Rebuild Production node_modules
        run: npm run build
        working-directory: ./backend
-
- terraform:
-   needs: test_backend
-   name: "Terraform Infrastructure Change Management"
-   runs-on: ubuntu-latest
-   defaults:
-     run:
-       shell: bash
-       working-directory: ./
- 
-   steps:
+       
      - name: Extract branch name
        shell: bash
        run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_OUTPUT
