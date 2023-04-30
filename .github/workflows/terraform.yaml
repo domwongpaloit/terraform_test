@@ -41,7 +41,7 @@ jobs:
        run: npm run coverage
        working-directory: ./backend 
      - name: Rebuild Production node_modules
-       run: npm build
+       run: npm run build
        working-directory: ./backend
 
  terraform:
