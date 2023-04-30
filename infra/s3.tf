@@ -17,6 +17,14 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "lambda_bucket" {
 }
 
 resource "aws_s3_bucket_acl" "bucket_acl" {
+  bucket     = aws_s3_bucket.lambda_bucket.id
+  acl        = "private"
+  depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership]
+}
+
+resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
   bucket = aws_s3_bucket.lambda_bucket.id
-  acl    = "private"
+  rule {
+    object_ownership = "ObjectWriter"
+  }
 }

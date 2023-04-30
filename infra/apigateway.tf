@@ -7,7 +7,10 @@ module "api_gateway" {
 
   integrations = {
     "GET /hello" = {
-      lambda_arn = module.lambda_function.lambda_function_arn
+      lambda_arn = module.lambda_functions["hello"].lambda_function_arn
+    },
+    "GET /getsomething" = {
+      lambda_arn = module.lambda_functions["getsomething"].lambda_function_arn
     }
   }
 

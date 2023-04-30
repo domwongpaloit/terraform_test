@@ -8,7 +8,7 @@ output "function_name" {
   description = "Name of the Lambda function."
 
   # value = aws_lambda_function.hello_world.function_name
-  value = module.lambda_function.lambda_function_name
+  value = module.lambda_functions
 }
 
 output "base_url" {

@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "pnpm jest",
-    "coverage": "pnpm jest --coverage"
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "build": "rm -rf node_modules && NODE_ENV=production && npm install --production && mkdir -p layer/nodejs && cp -r node_modules layer/nodejs/ && cp package.json nodejs/ && cp package-lock.json layer/nodejs/"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.5.0"
+  },
+  "dependencies": {
+    "date-fns": "^2.30.0"
   }
 }

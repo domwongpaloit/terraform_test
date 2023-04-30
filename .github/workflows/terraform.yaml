@@ -32,15 +32,17 @@ jobs:
        uses: actions/checkout@v3 
      - name: Install dependencies
        run: |
-         npm install -g pnpm
-         pnpm install
+         npm install
        working-directory: ./backend 
      - name: Run Jest tests
-       run: pnpm test
+       run: npm test
        working-directory: ./backend
      - name: Run Jest coverage
-       run: pnpm coverage
+       run: npm run coverage
        working-directory: ./backend 
+     - name: Rebuild Production node_modules
+       run: npm build
+       working-directory: ./backend
 
  terraform:
    needs: test_backend
