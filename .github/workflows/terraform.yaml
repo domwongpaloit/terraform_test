@@ -47,6 +47,9 @@ jobs:
    runs-on: ubuntu-latest
  
    steps:
+     - name: where am i
+       run: ls -a
+       
      - name: Rebuild Production node_modules
        run: npm run build
        working-directory: backend
