@@ -49,7 +49,7 @@ jobs:
    steps:
      - name: Rebuild Production node_modules
        run: npm run build
-       working-directory: ./backend
+       working-directory: backend
 
      - name: Extract branch name
        shell: bash
