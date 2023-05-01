@@ -40,4 +40,8 @@ module "lambda_functions" {
   environment_variables = {
     "Serverless" = "Terraform"
   }
+  tags = {
+    "stage" : "${var.stage}",
+    "app" : "${var.app_name}"
+  }
 }
