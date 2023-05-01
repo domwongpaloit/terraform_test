@@ -31,3 +31,5 @@ terraform.rc
 *.zip
 response.json
 *.sh
+backend/nodejs/*
+infra/builds/*
