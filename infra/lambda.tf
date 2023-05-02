@@ -21,8 +21,6 @@ locals {
 module "lambda_functions" {
   source = "terraform-aws-modules/lambda/aws"
 
-  depends_on = [module.vpc, aws_security_group.allow_tls]
-
   for_each = { for fn in local.lambda_functions : fn.function_name => fn }
 
   function_name = "${each.value.function_name}-${var.stage}"
@@ -52,10 +50,10 @@ module "lambda_functions" {
     "my_secret"    = local.secrets.my_secret,
     "DATABASE_URL" = local.secrets.database_url
   }
+
   tags = {
     "stage" : "${var.stage}",
     "app" : "${var.app_name}"
-
   }
 
   attach_policy = true

@@ -18,9 +18,6 @@ module "vpc" {
 }
 
 resource "aws_security_group" "allow_tls" {
-  depends_on = [
-    module.vpc
-  ]
   name        = "allow_tls-${var.stage}"
   description = "Allow TLS inbound traffic"
   vpc_id      = module.vpc.vpc_id
@@ -40,9 +37,5 @@ resource "aws_security_group" "allow_tls" {
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
-  }
-
-  tags = {
-    Name = "allow_tls"
   }
 }
