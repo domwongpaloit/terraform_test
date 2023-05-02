@@ -21,6 +21,8 @@ locals {
 module "lambda_functions" {
   source = "terraform-aws-modules/lambda/aws"
 
+  depends_on = [module.vpc, aws_security_group.allow_tls]
+
   for_each = { for fn in local.lambda_functions : fn.function_name => fn }
 
   function_name = "${each.value.function_name}-${var.stage}"
@@ -37,7 +39,7 @@ module "lambda_functions" {
   ]
 
   vpc_subnet_ids         = module.vpc.private_subnets
-  vpc_security_group_ids = [module.vpc.default_security_group_id, aws_security_group.allow_tls.id]
+  vpc_security_group_ids = [aws_security_group.allow_tls.id]
 
   allowed_triggers = {
     AllowExecutionFromAPIGateway = {
