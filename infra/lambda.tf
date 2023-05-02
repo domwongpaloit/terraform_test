@@ -38,10 +38,12 @@ module "lambda_functions" {
     }
   }
   environment_variables = {
-    "Serverless" = "Terraform"
+    "Serverless" = "Terraform",
+    "my_secret"  = local.secrets.my_secret
   }
   tags = {
     "stage" : "${var.stage}",
     "app" : "${var.app_name}"
+
   }
 }
