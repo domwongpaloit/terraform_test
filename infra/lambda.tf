@@ -9,6 +9,11 @@ locals {
       function_name = "getsomething"
       handler       = "getsomething.handler"
       runtime       = "nodejs16.x"
+    },
+    {
+      function_name = "posts"
+      handler       = "posts.handler"
+      runtime       = "nodejs16.x"
     }
   ]
 }
@@ -38,8 +43,9 @@ module "lambda_functions" {
     }
   }
   environment_variables = {
-    "Serverless" = "Terraform",
-    "my_secret"  = local.secrets.my_secret
+    "Serverless"   = "Terraform",
+    "my_secret"    = local.secrets.my_secret,
+    "DATABASE_URL" = local.secrets.database_url
   }
   tags = {
     "stage" : "${var.stage}",

@@ -31,5 +31,7 @@ terraform.rc
 *.zip
 response.json
 *.sh
-backend/nodejs/*
+backend/layer/nodejs/*
 infra/builds/*
+backend/.env
+backend/.env.exmaple
