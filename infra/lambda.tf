@@ -36,6 +36,9 @@ module "lambda_functions" {
     module.lambda_layer_s3.lambda_layer_arn,
   ]
 
+  vpc_subnet_ids         = module.vpc.private_subnets
+  vpc_security_group_ids = [module.vpc.default_security_group_id, aws_security_group.allow_tls.id]
+
   allowed_triggers = {
     AllowExecutionFromAPIGateway = {
       service    = "apigateway"
@@ -52,4 +55,7 @@ module "lambda_functions" {
     "app" : "${var.app_name}"
 
   }
+
+  attach_policy = true
+  policy        = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
 }
