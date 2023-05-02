@@ -9,6 +9,11 @@ locals {
       function_name = "getsomething"
       handler       = "getsomething.handler"
       runtime       = "nodejs16.x"
+    },
+    {
+      function_name = "posts"
+      handler       = "posts.handler"
+      runtime       = "nodejs16.x"
     }
   ]
 }

@@ -11,6 +11,9 @@ module "api_gateway" {
     },
     "GET /getsomething" = {
       lambda_arn = module.lambda_functions["getsomething"].lambda_function_arn
+    },
+    "GET /posts" = {
+      lambda_arn = module.lambda_functions["posts"].lambda_function_arn
     }
   }
 
