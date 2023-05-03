@@ -8,7 +8,7 @@
 module.exports.handler = async (event) => {
   console.log('Event: ', event);
   console.log(process.env.NODE_PATH);
-  let responseMessage = 'V8Hello, World!';
+  let responseMessage = 'V9Hello, World!';
   if (event.queryStringParameters && event.queryStringParameters['Name']) {
     responseMessage = 'V9Hello, ' + event.queryStringParameters['Name'] + '!';
   }
