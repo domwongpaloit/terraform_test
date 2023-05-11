@@ -62,7 +62,7 @@ jobs:
 
       - name: Check AWS CLI Version
         shell: bash
-        run: echo aws --version
+        run: aws --version
 
       - name: Rebuild Production node_modules
         run: npm run build
