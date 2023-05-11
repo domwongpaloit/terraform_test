@@ -5,7 +5,7 @@ module.exports.handler = async event => {
         statusCode: 200,
         body: JSON.stringify({
             // 👇️ use npm package
-            today: format(new Date(), "👉️ 'Today is a' eeee"),
+            today: format(new Date(), "👉️ 'Today is a' 16"),
         }),
     };
 };

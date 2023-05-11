@@ -35,3 +35,4 @@ backend/layer/nodejs/*
 infra/builds/*
 backend/.env
 backend/.env.exmaple
+*.txt

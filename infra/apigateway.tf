@@ -6,7 +6,8 @@ module "api_gateway" {
   name                   = "hello-world-v2-${var.stage}"
 
   body = templatefile("../doc/openapi.yaml", {
-    hello_function_arn        = module.lambda_functions["hello"].lambda_function_arn,
+    # example of blue green with code deploy for hello function
+    hello_function_arn        = "${module.lambda_functions["hello"].lambda_function_arn}:current",
     getsomething_function_arn = module.lambda_functions["getsomething"].lambda_function_arn
     posts_function_arn        = module.lambda_functions["posts"].lambda_function_arn
   })

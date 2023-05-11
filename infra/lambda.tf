@@ -19,7 +19,8 @@ locals {
 }
 
 module "lambda_functions" {
-  source = "terraform-aws-modules/lambda/aws"
+  source  = "terraform-aws-modules/lambda/aws"
+  version = "4.7.0"
 
   for_each = { for fn in local.lambda_functions : fn.function_name => fn }
 
