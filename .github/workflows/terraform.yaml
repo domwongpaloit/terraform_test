@@ -140,6 +140,7 @@ jobs:
         shell: bash
         run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_OUTPUT
         id: extract_branch
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -154,5 +155,8 @@ jobs:
         working-directory: ./infra
 
       - name: Terraform output
-        run: terraform output base_url
+        run: echo "base_url=$(terraform output base_url)" >> $GITHUB_OUTPUT
         working-directory: ./infra
+
+      - name: Check url
+        run: echo $(steps.extract_branch.outputs.base_url)
