@@ -163,7 +163,7 @@ jobs:
         working-directory: ./infra
 
       - name: Check Env File
-        run: echo output.json
+        run: cat output.json
         working-directory: ./backend/__integrate_test__
 
       - name: Install newman
