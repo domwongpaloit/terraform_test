@@ -133,6 +133,7 @@ jobs:
         id: terraform_base_url
 
   integration_test:
+    needs: terraform
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
