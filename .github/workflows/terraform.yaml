@@ -162,6 +162,10 @@ jobs:
         run: echo "{\"base_url\":$(terraform output -raw base_url)}" > ../backend/__integrate_test__/output.json
         working-directory: ./infra
 
+      - name: Check Env File
+        run: echo output.json
+        working-directory: ./backend/__integrate_test__
+
       - name: Install newman
         run: npm install -g newman
 
