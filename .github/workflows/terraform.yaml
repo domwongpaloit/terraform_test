@@ -156,7 +156,7 @@ jobs:
 
       - name: touch env file
         run: touch output.json
-        working-directory: ./backend/__inegrate_test__
+        working-directory: ./backend/__integrate_test__
 
       - name: Write Env file
         run: echo "{'base_url':$(terraform output base_url)}" > ../backend/__inegrate_test__/output.json
