@@ -129,7 +129,7 @@ jobs:
 
       - name: Terraform Output
         working-directory: ./infra
-        run: echo BASE_URL=${terraform output base_url} >> $GITHUB_ENV
+        run: echo BASE_URL=$(terraform output base_url) >> $GITHUB_ENV
         id: terraform_base_url
 
   integration_test:
