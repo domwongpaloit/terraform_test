@@ -138,5 +138,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Print deployed url
-        run: echo ${{ env.BASE_URL }}
+
+      - name: Setup Terraform with specified version on the runner
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.4.5
+
+      - name: Terraform init
+        id: init
+        run: terraform init -backend-config="bucket=$BUCKET_TF_STATE" -backend-config="key=${{ steps.extract_branch.outputs.branch }}" -backend-config="region=$BUCKET_REGION"
+        working-directory: ./infra
+
+      - name: Terraform output
+        run: terraform output base_url
+        working-directory: ./infra
