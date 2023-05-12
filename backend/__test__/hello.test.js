@@ -5,7 +5,7 @@ describe('handler', () => {
         const event = {};
         const response = await handler(event);
         expect(response.statusCode).toEqual(200);
-        expect(response.body).toEqual(JSON.stringify({ message: 'V69Hello, World!' }));
+        expect(response.body).toEqual(JSON.stringify({ message: 'V70Hello, World!' }));
     });
 
     it('returns a response with "Hello, <name>!" when called with a "Name" query parameter', async () => {
@@ -17,6 +17,6 @@ describe('handler', () => {
         };
         const response = await handler(event);
         expect(response.statusCode).toEqual(200);
-        expect(response.body).toEqual(JSON.stringify({ message: `V69Hello, ${name}!` }));
+        expect(response.body).toEqual(JSON.stringify({ message: `V70Hello, ${name}!` }));
     });
 });
