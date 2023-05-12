@@ -160,7 +160,7 @@ jobs:
         working-directory: ./backend/__integrate_test__
 
       - name: Write Env file
-        run: echo "{\"base_url\":\"$(terraform output -raw base_url)\"}" > ../backend/__integrate_test__/output.json
+        run: echo "{\"base_url\":\"${terraform output -raw base_url}\"}" > ../backend/__integrate_test__/output.json
         working-directory: ./infra
 
       - name: Check Env File
