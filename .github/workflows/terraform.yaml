@@ -159,12 +159,12 @@ jobs:
         working-directory: ./backend/__integrate_test__
 
       - name: Write Env file
-        run: echo "{'base_url':$(terraform output base_url)}" > ../backend/__inegrate_test__/output.json
+        run: echo "{'base_url':$(terraform output base_url)}" > ../backend/__integrate_test__/output.json
         working-directory: ./infra
 
       - name: Install newman
         run: npm install -g newman
 
       - name: Run Test
-        run: newman run __inegrate_test__/test.json -e __inegrate_test__/output.json
+        run: newman run __integrate_test__/test.json -e __integrate_test__/output.json
         working-directory: ./backend
