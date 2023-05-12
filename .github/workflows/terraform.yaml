@@ -126,3 +126,16 @@ jobs:
         working-directory: ./infra
         if: github.event_name == 'push'
         run: terraform apply -var="stage=${{steps.extract_branch.outputs.branch}}" -auto-approve -input=false
+
+      - name: Terraform Output
+        working-directory: ./infra
+        run: echo BASE_URL=${terraform output base_url} >> $GITHUB_ENV
+        id: terraform_base_url
+
+  integration_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Print deployed url
+        run: echo ${{ env.BASE_URL }}
