@@ -161,6 +161,7 @@ jobs:
       - name: Extract Url from terraform output
         shell: bash
         run: echo "base_url=$(terraform output -raw base_url)" >>$GITHUB_OUTPUT
+        working-directory: ./infra
         id: base_url
 
       - name: Run Test
