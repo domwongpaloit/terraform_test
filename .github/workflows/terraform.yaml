@@ -154,6 +154,10 @@ jobs:
         run: terraform init -backend-config="bucket=$BUCKET_TF_STATE" -backend-config="key=${{ steps.extract_branch.outputs.branch }}" -backend-config="region=$BUCKET_REGION"
         working-directory: ./infra
 
+      - name: touch env file
+        run: touch output.json
+        working-directory: ./backend/__inegrate_test__
+
       - name: Write Env file
         run: echo "{'base_url':$(terraform output base_url)}" > ../backend/__inegrate_test__/output.json
         working-directory: ./infra
