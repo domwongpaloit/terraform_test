@@ -5,17 +5,12 @@ module "api_gateway" {
   create_api_domain_name = false
   name                   = "hello-world-v2-${var.stage}"
 
-  integrations = {
-    "GET /hello" = {
-      lambda_arn = module.lambda_functions["hello"].lambda_function_arn
-    },
-    "GET /getsomething" = {
-      lambda_arn = module.lambda_functions["getsomething"].lambda_function_arn
-    },
-    "GET /posts" = {
-      lambda_arn = module.lambda_functions["posts"].lambda_function_arn
-    }
-  }
+  body = templatefile("../doc/openapi.yaml", {
+    # example of blue green with code deploy for hello function
+    hello_function_arn        = "${module.lambda_functions["hello"].lambda_function_arn}:current",
+    getsomething_function_arn = module.lambda_functions["getsomething"].lambda_function_arn
+    posts_function_arn        = module.lambda_functions["posts"].lambda_function_arn
+  })
 
   tags = {
     Name = "${var.stage}"

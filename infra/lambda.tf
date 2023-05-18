@@ -19,7 +19,8 @@ locals {
 }
 
 module "lambda_functions" {
-  source = "terraform-aws-modules/lambda/aws"
+  source  = "terraform-aws-modules/lambda/aws"
+  version = "4.7.0"
 
   for_each = { for fn in local.lambda_functions : fn.function_name => fn }
 
@@ -36,6 +37,9 @@ module "lambda_functions" {
     module.lambda_layer_s3.lambda_layer_arn,
   ]
 
+  vpc_subnet_ids         = module.vpc.private_subnets
+  vpc_security_group_ids = [aws_security_group.allow_tls.id]
+
   allowed_triggers = {
     AllowExecutionFromAPIGateway = {
       service    = "apigateway"
@@ -47,9 +51,12 @@ module "lambda_functions" {
     "my_secret"    = local.secrets.my_secret,
     "DATABASE_URL" = local.secrets.database_url
   }
+
   tags = {
     "stage" : "${var.stage}",
     "app" : "${var.app_name}"
-
   }
+
+  attach_policy = true
+  policy        = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
 }

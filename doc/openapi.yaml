@@ -1,0 +1,51 @@
+openapi: "3.0.1"
+info:
+    version: 0.0.1
+    title: My API
+    description: My API
+paths:
+    /hello:
+        get:
+            operationId: hello
+            responses:
+                default:
+                    description: "Default response for GET /hello"
+            x-amazon-apigateway-integration:
+                $ref: "#/components/x-amazon-apigateway-integrations/hello"
+    /getsomething:
+        get:
+            operationId: getsomething
+            responses:
+                default:
+                    description: "Default response for GET /getsomething"
+            x-amazon-apigateway-integration:
+                $ref: "#/components/x-amazon-apigateway-integrations/getsomething"
+    /posts:
+        get:
+            operationId: posts
+            responses:
+                default:
+                    description: "Default response for GET /posts"
+            x-amazon-apigateway-integration:
+                $ref: "#/components/x-amazon-apigateway-integrations/posts"
+
+components:
+    x-amazon-apigateway-integrations:
+        hello:
+            type: AWS_PROXY
+            httpMethod: GET
+            uri: "${hello_function_arn}"
+            payloadFormatVersion: "2.0"
+            connectionType: INTERNET
+        getsomething:
+            type: AWS_PROXY
+            httpMethod: GET
+            uri: "${getsomething_function_arn}"
+            payloadFormatVersion: "2.0"
+            connectionType: INTERNET
+        posts:
+            type: AWS_PROXY
+            httpMethod: GET
+            uri: "${posts_function_arn}"
+            payloadFormatVersion: "2.0"
+            connectionType: INTERNET
